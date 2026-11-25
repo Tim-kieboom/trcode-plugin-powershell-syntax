@@ -1,0 +1,232 @@
+id = "powershell-syntax"
+name = "PowerShell"
+version = "0.0.1"
+abi = "1.12"
+# A language and nothing else: no module of its own and no pane. The grammar is the file the
+# installer downloads and checks.
+
+[language]
+name = "PowerShell"
+grammar = "powershell.wasm"
+extensions = ["ps1", "psm1", "psd1"]
+comment = "#"
+# The query is the grammar's own (queries/highlights.scm of https://github.com/airbus-cert/tree-sitter-powershell, v0.26.6 (65ea691)).
+# The patterns are in the opposite order of the grammar's file: TerminalCode takes the first of two
+# patterns on the same text, and that file is written for the last (as Neovim and Zed take it).
+highlights = '''
+(comment) @comment
+
+(variable) @variable
+
+(type_spec) @type
+
+(command_invokation_operator) @operator
+
+(member_access
+  (member_name) @property)
+
+(invokation_expression
+  (member_name) @function)
+
+(function_statement
+  (function_name) @function)
+
+(command
+  command_name: (command_name) @function)
+
+(real_literal) @number
+
+(integer_literal) @number
+
+(string_literal) @string
+
+";" @punctuation
+
+"-not" @operator
+
+".." @operator
+
+"*" @operator
+
+"%" @operator
+
+"\\" @operator
+
+"/" @operator
+
+"-" @operator
+
+"+" @operator
+
+"-bxor" @operator
+
+"-bor" @operator
+
+"-band" @operator
+
+"-xor" @operator
+
+"-or" @operator
+
+"-and" @operator
+
+"-split" @operator
+
+"-shr" @operator
+
+"-shl" @operator
+
+"-replace" @operator
+
+"-notmatch" @operator
+
+"-notlike" @operator
+
+"-notin" @operator
+
+"-notcontains" @operator
+
+"-ne" @operator
+
+"-match" @operator
+
+"-lt" @operator
+
+"-like" @operator
+
+"-le" @operator
+
+"-join" @operator
+
+"-isplit" @operator
+
+"-isnot" @operator
+
+"-is" @operator
+
+"-ireplace" @operator
+
+"-inotmatch" @operator
+
+"-inotlike" @operator
+
+"-inotcontains" @operator
+
+"-ine" @operator
+
+"-in" @operator
+
+"-imatch" @operator
+
+"-ilt" @operator
+
+"-ilike" @operator
+
+"-ile" @operator
+
+"-igt" @operator
+
+"-ige" @operator
+
+"-ieq" @operator
+
+"-icontains" @operator
+
+"-gt" @operator
+
+"-ge" @operator
+
+"-eq" @operator
+
+"-csplit" @operator
+
+"-creplace" @operator
+
+"-contains" @operator
+
+"-cnotmatch" @operator
+
+"-cnotlike" @operator
+
+"-cnotcontains" @operator
+
+"-cne" @operator
+
+"-cmatch" @operator
+
+"-clt" @operator
+
+"-clike" @operator
+
+"-cle" @operator
+
+"-cgt" @operator
+
+"-cge" @operator
+
+"-ceq" @operator
+
+"-ccontains" @operator
+
+"-as" @operator
+
+"sequence" @keyword
+
+"parallel" @keyword
+
+"inlinescript" @keyword
+
+"data" @keyword
+
+"finally" @keyword
+
+"catch" @keyword
+
+"try" @keyword
+
+"trap" @keyword
+
+"exit" @keyword
+
+"return" @keyword
+
+"throw" @keyword
+
+"continue" @keyword
+
+"break" @keyword
+
+"workflow" @keyword
+
+"filter" @keyword
+
+"function" @keyword
+
+"until" @keyword
+
+"do" @keyword
+
+"while" @keyword
+
+"for" @keyword
+
+"foreach" @keyword
+
+"switch" @keyword
+
+"else" @keyword
+
+"elseif" @keyword
+
+"if" @keyword
+
+"end" @keyword
+
+"process" @keyword
+
+"begin" @keyword
+
+"dynamicparam" @keyword
+
+"param" @keyword
+'''
